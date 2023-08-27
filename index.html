@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./img/editable-ilhom-aliyev-logo.svg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./css/main.css" />
+    <title>e-Cinema (OMDb API)</title>
+  </head>
+  <body data-theme="light">
+    <div class="container">
+      <div id="background"></div>
+      <header>
+        <h1>e-Cinema</h1>
+        <div class="themeIcon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 733.34 733.34">
+            <path
+              d="M200,366.67A166.67,166.67,0,0,0,366.67,533.34V200A166.67,166.67,0,0,0,200,366.67Z"
+            />
+            <path
+              d="M366.67,0C164.16,0,0,164.17,0,366.67S164.16,733.34,366.67,733.34,733.33,569.17,733.33,366.67C734.26,165.09,571.59.93,370,0Zm-300,366.67c.91-165.31,134.69-299.09,300-300V200a166.67,166.67,0,0,1,0,333.34V666.67C201.36,665.76,67.58,532,66.67,366.67Z"
+            />
+          </svg>
+        </div>
+      </header>
+      <div class="searchBar">
+        <input
+          class="searchInput"
+          type="text"
+          inputmode="search"
+          name="movieName"
+          placeholder="Name of movie"
+        />
+        <button id="searchBtn">Search</button>
+      </div>
+      <div class="searchResult">
+        <h4>Perhaps you were looking for:</h4>
+        <div class="exactResult"></div>
+        <h4>Films with a similar name: <span class="totalResults"></span></h4>
+        <div class="similarName"></div>
+      </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>

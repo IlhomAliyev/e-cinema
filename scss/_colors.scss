@@ -1,0 +1,53 @@
+:root {
+  // --bgc: rgb(238, 238, 238);
+  --elem-bgc: rgba(255, 255, 255, 0.5);
+  --text-color: black;
+  --anti-text-color: white;
+  --prime-color: goldenrod;
+  --delete-color: tomato;
+  --transparent-delete: rgba(255, 0, 0, 0.3);
+}
+
+body {
+  background-color: #fff;
+}
+
+body[data-theme="dark"] {
+  // --bgc: #333;
+  --elem-bgc: rgba(0, 0, 0, 0.5);
+  --bgc: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(255, 0, 0, 1) 100%);
+  --text-color: white;
+  --anti-text-color: black;
+
+  .themeIcon {
+    svg {
+      rotate: 180deg;
+    }
+  }
+}
+
+.themeIcon {
+  cursor: pointer;
+
+  background-color: var(--elem-bgc);
+  padding: 5px;
+  box-sizing: content-box;
+  border-radius: 15px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: 30px;
+    height: 30px;
+    fill: var(--text-color);
+    transition: 300ms;
+  }
+
+  &:hover {
+    svg {
+      fill: var(--prime-color);
+    }
+  }
+}

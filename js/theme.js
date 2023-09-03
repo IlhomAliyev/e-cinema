@@ -1,27 +1,30 @@
 "use strict";
 
+const darkTheme = "darkTheme";
+const lightTheme = "lightTheme";
+let themeState = localStorage.getItem("themeState") || lightTheme;
+
 export function appTheme() {
   const themeIcon = document.querySelector(".themeIcon");
   themeIcon.addEventListener("click", changeTheme);
 
-  let themeState = localStorage.getItem("themeState") || "light";
+  themeState === darkTheme
+    ? (document.body.dataset.theme = darkTheme)
+    : (document.body.dataset.theme = lightTheme);
+}
 
-  document.addEventListener("DOMContentLoaded", () => {
-    themeState === "dark"
-      ? (document.body.dataset.theme = "dark")
-      : (document.body.dataset.theme = "light");
-  });
+function changeTheme() {
+  themeState === lightTheme
+    ? (themeState = darkTheme)
+    : (themeState = lightTheme);
 
-  function changeTheme() {
-    themeState === "light" ? (themeState = "dark") : (themeState = "light");
-    localStorage.setItem("themeState", themeState);
+  localStorage.setItem("themeState", themeState);
 
-    if (themeState === "dark") {
-      document.body.dataset.theme = "dark";
-    }
+  if (themeState === darkTheme) {
+    document.body.dataset.theme = darkTheme;
+  }
 
-    if (themeState === "light") {
-      document.body.dataset.theme = "light";
-    }
+  if (themeState === lightTheme) {
+    document.body.dataset.theme = lightTheme;
   }
 }

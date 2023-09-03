@@ -5,7 +5,10 @@ const modalWindow = document.querySelector(".modal");
 
 export function appModal() {
   modalWindow.addEventListener("click", (e) => {
-    if (!e.target.closest(".modalContent")) {
+    if (
+      !e.target.closest(".modalContent") &&
+      modalWindow.classList.contains("_active")
+    ) {
       closeModalWindow();
     }
   });
@@ -15,12 +18,12 @@ export function appModal() {
       closeModalWindow();
     }
   });
+}
 
-  function closeModalWindow() {
-    modalWindow.classList.remove("_active");
-    document.body.style.overflow = "auto";
-    launchApp();
-  }
+function closeModalWindow() {
+  modalWindow.classList.remove("_active");
+  document.body.style.overflow = "auto";
+  launchApp();
 }
 
 export function openModalWindow() {

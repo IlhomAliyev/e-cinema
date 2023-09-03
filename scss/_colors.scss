@@ -5,16 +5,17 @@
   --anti-text-color: white;
   --prime-color: goldenrod;
   --prime-transparent: rgba(218, 165, 32, 0.8);
+  --img-error: rgba(218, 165, 32, 0.3);
   --delete-color: tomato;
   --transparent-delete: rgba(255, 0, 0, 0.3);
   --passive-color: rgba(211, 211, 211, 0.5);
 }
 
 body {
-  background-color: #fff;
+  background-color: var(--elem-bgc);
 }
 
-body[data-theme="dark"] {
+body[data-theme="darkTheme"] {
   // --bgc: #333;
   --elem-bgc: rgba(0, 0, 0, 0.5);
   --bgc: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(255, 0, 0, 1) 100%);

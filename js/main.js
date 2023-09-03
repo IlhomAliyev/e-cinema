@@ -1,10 +1,9 @@
 "use strict";
 
-import { activePage } from "./activePage.js";
-activePage();
-import { appTheme } from "./theme.js";
-appTheme();
+import { activateToggle, activePage } from "./activePage.js";
 import { appModal, openModalWindow } from "./modal.js";
+import { appTheme } from "./theme.js";
+activePage();
 appModal();
 
 const searchInput = document.querySelector(".searchInput");
@@ -19,10 +18,18 @@ const loader = document.querySelector(".loader");
 const modalContent = document.querySelector(".modalContent");
 
 const API_KEY = "9e90c26b";
-let favouriteMovies = JSON.parse(localStorage.getItem("favMovies")) || [];
+export let favouriteMovies =
+  JSON.parse(localStorage.getItem("favMovies")) || [];
 
 searchBtn.addEventListener("click", searchHandler);
 searchInput.addEventListener("keyup", enterHandler);
+
+document.addEventListener("DOMContentLoaded", handleAppStart);
+
+function handleAppStart() {
+  appTheme();
+  activateToggle();
+}
 
 async function searchHandler() {
   if (validateInput()) {
@@ -116,7 +123,6 @@ function toggleLoader(isLoading) {
 }
 
 export function renderExactMovie(exactMovie, targetElem) {
-  // const exactMovie = JSON.parse(localStorage.getItem("exactMovieData"));
   let exactMovieHTML = "";
 
   if (exactMovie.Response === "False") {
@@ -125,8 +131,12 @@ export function renderExactMovie(exactMovie, targetElem) {
 
   if (exactMovie.Response === "True") {
     const favState = isMovieFavourite(exactMovie);
-    let moviePosterImg = `<img src="${exactMovie.Poster}" alt="${exactMovie.Title}" class="movie__poster" />`;
-    let moviePosterDiv = `<div class="noPoster">The poster was not found :(</div>`;
+
+    const exactMoviePoster =
+      exactMovie.Poster !== "N/A"
+        ? `<img class="poster" src="${exactMovie.Poster}" alt="${exactMovie.Title}" />`
+        : `<div class="noPoster">The poster was not found :(</div>`;
+
     exactMovieHTML = `
     <h4 class="movieTitle">${exactMovie.Title}</h4>
     <div class="exactMovie">
@@ -144,7 +154,9 @@ export function renderExactMovie(exactMovie, targetElem) {
             />
           </svg>
         </div>
-        ${exactMovie.Poster !== "N/A" ? moviePosterImg : moviePosterDiv}
+        <div class="movie__poster">
+          ${exactMoviePoster}
+        </div>
       </div>
       <div class="movie__params">
         <div class="movie__parameter movie__title">
@@ -229,9 +241,9 @@ export function renderMovieList(movieList, targetElem) {
 
         const eachMoviePoster =
           eachMovie.Poster !== "N/A"
-            ? `<img src="${eachMovie.Poster}" alt="${eachMovie.Title}" class="movie__poster" />`
+            ? `<img class="poster" src="${eachMovie.Poster}" alt="${eachMovie.Title}" />`
             : `<div class="noPoster">The poster was not found :(</div>`;
-
+        // todo решить проблему с кавычками до и после JSON
         movieListHTML += `
         <div class="movie">
           <div class="favBtn-wrapper ${
@@ -247,7 +259,9 @@ export function renderMovieList(movieList, targetElem) {
               />
             </svg>
           </div>
-          ${eachMoviePoster}
+          <div class="movie__poster">
+            ${eachMoviePoster}
+          </div>
           <div class="movie__description">
             <p class="movie__title">
               ${eachMovie.Title} |
@@ -304,7 +318,9 @@ function toggleFavMovie(e) {
   }
 
   localStorage.setItem("favMovies", JSON.stringify(favouriteMovies));
+  activateToggle();
   renderFavMovies();
+  console.log("Favourite Movies: ", favouriteMovies);
 }
 
 export function renderFavMovies() {

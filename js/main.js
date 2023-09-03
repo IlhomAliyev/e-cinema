@@ -339,7 +339,7 @@ export function renderFavMovies() {
 
         const favMoviePoster =
           favMovie.Poster !== "N/A"
-            ? `<img src="${favMovie.Poster}" alt="${favMovie.Title}" class="movie__poster" />`
+            ? `<img class="poster" src="${favMovie.Poster}" alt="${favMovie.Title}" />`
             : `<div class="noPoster">The poster was not found :(</div>`;
 
         favMoviesHTML += `
@@ -357,7 +357,9 @@ export function renderFavMovies() {
                 />
               </svg>
             </div>
-            ${favMoviePoster}
+            <div class="movie__poster">
+              ${favMoviePoster}
+            </div>
           <div class="movie__description">
             <p class="movie__title">
               ${favMovie.Title} |

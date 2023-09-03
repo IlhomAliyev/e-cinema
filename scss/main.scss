@@ -204,7 +204,7 @@ h4 {
 }
 
 .movie__controls {
-  flex: 0 0 30%;
+  flex: 0 0 26%;
   position: relative;
 }
 
@@ -216,6 +216,7 @@ h4 {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    object-position: bottom;
 
     background-color: var(--img-error);
     display: block;
@@ -283,18 +284,20 @@ h4 {
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 950px) {
   header {
     gap: 10px;
   }
 
   .exactMovie {
     flex-direction: column;
-  }
 
-  .movie__controls {
     .movie__poster {
-      max-height: 400px;
+      height: 400px;
+
+      .poster {
+        object-fit: contain;
+      }
     }
   }
 }

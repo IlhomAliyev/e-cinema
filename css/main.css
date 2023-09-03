@@ -536,7 +536,7 @@ h4 {
 }
 
 .movie__controls {
-  flex: 0 0 30%;
+  flex: 0 0 26%;
   position: relative;
 }
 
@@ -549,6 +549,8 @@ h4 {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: bottom;
+     object-position: bottom;
   background-color: var(--img-error);
   display: block;
   text-align: center;
@@ -604,15 +606,19 @@ h4 {
   fill: var(--elem-bgc);
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 950px) {
   header {
     gap: 10px;
   }
   .exactMovie {
     flex-direction: column;
   }
-  .movie__controls .movie__poster {
-    max-height: 400px;
+  .exactMovie .movie__poster {
+    height: 400px;
+  }
+  .exactMovie .movie__poster .poster {
+    -o-object-fit: contain;
+       object-fit: contain;
   }
 }
 .noPoster {

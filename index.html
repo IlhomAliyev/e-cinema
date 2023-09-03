@@ -12,10 +12,25 @@
     <title>e-Cinema (OMDb API)</title>
   </head>
   <body data-theme="light">
+    <div class="modal">
+      <div class="closeBtn"></div>
+      <div class="modalContent"></div>
+    </div>
     <div class="container">
       <div id="background"></div>
       <header>
         <h1>e-Cinema</h1>
+        <div class="toggleWrapper">
+          <div class="indicator _main"></div>
+          <div class="labelWrapper">
+            <label id="mainLabel" class="_noselect _active" for="main"
+              >Main</label
+            >
+            <label id="favLabel" class="_noselect" for="fav">Favourites</label>
+          </div>
+          <input checked type="radio" name="mode" id="main" value="main" />
+          <input type="radio" name="mode" id="fav" value="fav" />
+        </div>
         <div class="themeIcon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 733.34 733.34">
             <path
@@ -27,6 +42,7 @@
           </svg>
         </div>
       </header>
+      <span class="loader"></span>
       <div class="searchBar">
         <input
           class="searchInput"
@@ -37,14 +53,21 @@
         />
         <button id="searchBtn">Search</button>
       </div>
-      <div class="searchResult">
-        <h4>Perhaps you were looking for:</h4>
-        <div class="exactResult"></div>
-        <h4>Films with a similar name: <span class="totalResults"></span></h4>
-        <div class="similarName"></div>
+      <div class="targetWrapper">
+        <div class="target targetMain _active">
+          <div class="exactResult"></div>
+          <h4>
+            Films with a similar name: <span class="count totalResults"></span>
+          </h4>
+          <div class="movieList similarName"></div>
+        </div>
+        <div class="target targetFav">
+          <h4>Favourite movies: <span class="count favCount"></span></h4>
+          <div class="movieList favouriteMovies _active"></div>
+        </div>
       </div>
     </div>
 
-    <script src="./js/script.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>

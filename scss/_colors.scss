@@ -4,8 +4,10 @@
   --text-color: black;
   --anti-text-color: white;
   --prime-color: goldenrod;
+  --prime-transparent: rgba(218, 165, 32, 0.8);
   --delete-color: tomato;
   --transparent-delete: rgba(255, 0, 0, 0.3);
+  --passive-color: rgba(211, 211, 211, 0.5);
 }
 
 body {
@@ -27,6 +29,7 @@ body[data-theme="dark"] {
 }
 
 .themeIcon {
+  flex: 0 0 35px;
   cursor: pointer;
 
   background-color: var(--elem-bgc);
@@ -37,6 +40,7 @@ body[data-theme="dark"] {
   display: flex;
   justify-content: center;
   align-items: center;
+  align-self: stretch;
 
   svg {
     width: 30px;

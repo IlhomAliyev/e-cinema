@@ -1,43 +1,60 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
 @import "./setup";
 @import "./colors";
+@import "./header";
+@import "./modal";
+@import "./header";
 
-header {
+h4 {
   text-align: center;
-  margin-bottom: 20px;
-  padding: 10px;
-  padding-left: 15px;
-
   background-color: var(--elem-bgc);
-  border-radius: 20px;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.loader {
+  width: 90%;
+  height: 6px;
+  display: inline-block;
+  background: var(--elem-bgc);
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
 
-  h1 {
-    text-shadow: 0 0 5px black;
-    color: #fff;
-    // display: inline-block;
-    // padding: 10px 15px;
-    // border-radius: 15px;
-    // background-color: var(--elem-bgc);
+  display: block;
+  margin: 0 auto 7px;
+
+  &._active {
+    &::after {
+      content: "";
+      width: 192px;
+    }
+  }
+
+  &::after {
+    content: "";
+    width: 0px;
+    height: 100%;
+    background: var(--text-color);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    box-sizing: border-box;
+    animation: animloader 1s linear infinite;
+
+    transition: 200ms;
   }
 }
 
-.container {
-  // padding: 30px calc(10.3vw - 29px);
-  max-width: 70%;
-  margin: 30px auto 0;
-}
-
-input,
-button {
-  background-color: var(--elem-bgc);
-  color: inherit;
-
-  border: none;
-  border-radius: 12px;
+@keyframes animloader {
+  0% {
+    left: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    left: 100%;
+    transform: translateX(0%);
+  }
 }
 
 .searchBar {
@@ -54,10 +71,6 @@ button {
 
   .searchInput {
     flex: 1 0 auto;
-
-    &._error {
-      color: red;
-    }
   }
 
   #searchBtn {
@@ -65,18 +78,22 @@ button {
   }
 }
 
-.searchResult {
+.errorInput {
+  color: red;
+
+  &::placeholder {
+    color: red;
+  }
+}
+
+.targetWrapper {
+  position: relative;
+
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transform: translateY(-200px);
   transition: 300ms;
-
-  padding: 20px;
-  border-radius: 20px;
-  background-color: var(--elem-bgc);
-  backdrop-filter: blur(3px);
-  position: relative;
 
   &._active {
     opacity: 1;
@@ -84,45 +101,81 @@ button {
     pointer-events: all;
     transform: translateY(0px);
   }
+}
 
-  h4 {
-    text-align: center;
-    margin-bottom: 20px;
+.target {
+  padding: 20px;
+  border-radius: 20px;
+  background-color: var(--elem-bgc);
+  backdrop-filter: blur(3px);
+  transition: 300ms;
 
-    background-color: var(--elem-bgc);
-    border-radius: 10px;
-    padding: 5px 10px;
-  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 
-  .searchResult {
-    margin-bottom: 20px;
-  }
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 
-  .exactResult {
-    margin-bottom: 20px;
-  }
+  &._active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
 
-  .similarName {
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: 10px;
-
-    .movie {
-      flex: 1 0 200px;
-      height: 350px;
-      max-width: 50%;
-    }
+    translate: 0 0;
   }
 }
 
-.totalResults {
-  font-weight: normal;
+.targetFav {
+  translate: -100px 0;
+}
+
+.targetMain {
+  translate: 100px 0;
+}
+
+.app-message {
+  color: var(--prime-color);
+  text-align: center;
+  font-weight: bold;
+}
+
+.exactResult {
+  margin: 0 0 20px;
+}
+
+.movieList {
+  margin-top: 20px;
+  text-align: center;
+
+  display: none;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  &._active {
+    display: flex;
+  }
+
+  .movie {
+    flex: 1 0 200px;
+    height: 350px;
+  }
+}
+
+.count {
+  color: var(--prime-color);
+}
+
+.movieTitle {
+  margin-bottom: 20px;
 }
 
 .exactMovie {
   cursor: default;
-  height: auto;
   width: 100%;
   display: flex;
   backdrop-filter: blur(3px);
@@ -130,27 +183,33 @@ button {
   overflow: hidden;
 }
 
-.movie__controls {
-  flex: 0 1 auto;
-  position: relative;
-
-  .favBtn {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    border-radius: 0;
-
-    font-weight: bold;
+@media (max-width: 1000px) {
+  header {
+    gap: 10px;
   }
+
+  .exactMovie {
+    flex-direction: column;
+  }
+
+  .movie__controls {
+    .movie__poster {
+      max-height: 400px;
+    }
+  }
+}
+
+.movie__controls {
+  flex: 0 0 auto;
+  position: relative;
 
   .movie__poster {
     height: 100%;
+    width: 100%;
   }
 }
 
 .noPoster {
-  // background-color: rgba(218, 165, 32, 0.5);
   background-color: var(--transparent-delete);
   height: 100%;
 
@@ -181,6 +240,7 @@ button {
     display: flex;
     align-items: center;
 
+    border: 0.5px solid var(--passive-color);
     background-color: var(--elem-bgc);
     padding: 5px 10px;
     border-radius: 5px;
@@ -233,23 +293,10 @@ button {
     padding: 10px;
     width: 100%;
 
-    // text-align: center;
+    text-align: center;
     background-color: var(--elem-bgc);
     backdrop-filter: blur(3px);
     font-size: 14px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .favIcon {
-      position: static;
-      width: 12px;
-    }
-  }
-
-  &:not(:last-child) {
-    margin-bottom: 10px;
   }
 }
 
@@ -257,23 +304,60 @@ button {
   font-weight: bold;
 }
 
-.favIcon {
+.favBtn-wrapper {
   cursor: pointer;
   position: absolute;
   z-index: 10;
   top: 10px;
-  right: 10px;
-  width: 20px;
+  left: 10px;
+
+  width: 24px;
+  height: 24px;
+
+  padding: 5px;
+  background-color: var(--elem-bgc);
+  border-radius: 10px;
+  box-sizing: content-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   fill: none;
-  stroke: var(--prime-color);
-  stroke-width: 3px;
-  overflow: visible;
-
+  stroke: var(--text-color);
+  stroke-width: 30px;
   transition: 200ms;
 
-  &._active {
+  .favBtn {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  &:hover {
+    scale: 1.1;
     fill: var(--prime-color);
     stroke: none;
+  }
+
+  &:active {
+    scale: 0.9;
+    transition: 100ms;
+  }
+
+  &._active {
+    background-color: var(--prime-color);
+    scale: 1.1;
+    filter: drop-shadow(0 0 10px var(--prime-color));
+
+    stroke: none;
+    fill: white;
+
+    &:hover {
+      filter: none;
+      .favBtn {
+        fill: var(--elem-bgc);
+      }
+    }
   }
 }

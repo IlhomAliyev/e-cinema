@@ -7,7 +7,7 @@
 #background {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -10;
 
   // object-fit: cover;
   background-image: url("https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg");
@@ -30,28 +30,19 @@ body {
   font-family: "Montserrat";
   font-size: 16px;
   color: var(--text-color);
-  // background: var(--bgc);
-  // background-size: 200% 200%;
-  // animation: backAnim 7s ease infinite;
+  min-width: 400px;
+}
 
-  // background-image: url("https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg");
-  // background-size: cover;
-
-  // -webkit-animation: slidein 100s;
-  // animation: slidein 100s;
-
-  // -webkit-animation-fill-mode: forwards;
-  // animation-fill-mode: forwards;
-
-  // -webkit-animation-iteration-count: infinite;
-  // animation-iteration-count: infinite;
-
-  // -webkit-animation-direction: alternate;
-  // animation-direction: alternate;
+.container {
+  padding: calc(3vw + 8.5px); //? 400 - 20px | 1440 - 50px
 }
 
 input,
 button {
+  background-color: var(--elem-bgc);
+  color: inherit;
+  border-radius: 12px;
+
   padding: 10px 12px;
   font-family: inherit;
   font-size: inherit;
@@ -60,8 +51,6 @@ button {
   border: 0;
 
   transition: 200ms;
-
- accent-color: var(--prime-color);
 }
 
 button {
@@ -70,13 +59,23 @@ button {
   &:hover {
     background-color: var(--prime-color);
     color: white;
+    scale: 1.1;
   }
 
   &:active {
-    transition: 50ms;
-    translate: 0 -3px;
-    // scale: 1.1;
+    transition: 100ms;
+    scale: 0.9;
   }
+}
+
+._noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 @keyframes backAnim {

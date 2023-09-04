@@ -84,7 +84,6 @@ async function searchMovieById(movieId) {
     const movieByIdReq = await fetch(exactMovieURL);
     const movieByIdData = await movieByIdReq.json();
     localStorage.setItem("movieById", JSON.stringify(movieByIdData));
-    // return movieByIdData;
   } catch (error) {
     console.warn("Search exactMovie ERROR:", error);
     toggleLoader(false);

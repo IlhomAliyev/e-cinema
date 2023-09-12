@@ -9,14 +9,38 @@
   position: fixed;
   inset: 0;
   z-index: -10;
-  background-image: url("https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg");
-  background-size: cover;
-  animation: slidein 80s;
+  background: no-repeat url("./../img/background.jpg");
+  background-size: 2200px;
+  animation: slidein 70s;
   animation-fill-mode: forwards;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
 
+@media (min-width: 1920px) {
+  #background {
+    background-size: cover;
+  }
+}
+@keyframes backAnim {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+@keyframes slidein {
+  from {
+    background-position: top;
+  }
+  to {
+    background-position: -100px 0px;
+  }
+}
 body {
   font-family: "Montserrat";
   font-size: 16px;
@@ -63,34 +87,13 @@ button:active {
              supported by Chrome, Edge, Opera and Firefox */
 }
 
-@keyframes backAnim {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
-}
-@keyframes slidein {
-  from {
-    background-position: top;
-    background-size: 3000px;
-  }
-  to {
-    background-position: -100px 0px;
-    background-size: 2750px;
-  }
-}
 :root {
   --elem-bgc: rgba(255, 255, 255, 0.5);
   --text-color: black;
   --anti-text-color: white;
-  --prime-color: goldenrod;
-  --prime-transparent: rgba(218, 165, 32, 0.8);
-  --img-error: rgba(218, 165, 32, 0.3);
+  --prime-color: rgb(255, 193, 37);
+  --prime-transparent: rgba(255, 193, 37, 0.8);
+  --img-error: rgba(255, 193, 37, 0.3);
   --delete-color: tomato;
   --transparent-delete: rgba(255, 0, 0, 0.3);
   --passive-color: rgba(211, 211, 211, 0.5);

@@ -3,8 +3,6 @@
 import { activateToggle, activePage } from "./activePage.js";
 import { appModal, openModalWindow } from "./modal.js";
 import { appTheme } from "./theme.js";
-activePage();
-appModal();
 
 const searchInput = document.querySelector(".searchInput");
 const searchBtn = document.querySelector("#searchBtn");
@@ -29,6 +27,8 @@ document.addEventListener("DOMContentLoaded", handleAppStart);
 function handleAppStart() {
   appTheme();
   activateToggle();
+  activePage();
+  appModal();
 }
 
 async function searchHandler() {
@@ -56,7 +56,7 @@ function validateInput() {
     setTimeout(() => {
       searchInput.placeholder = "Name of movie";
       searchInput.classList.remove("errorInput");
-    }, 1_500);
+    }, 1500);
 
     return false;
   } else {
@@ -201,13 +201,13 @@ export function renderExactMovie(exactMovie, targetElem) {
         <div class="movie__parameter movie__rating">
           <span class="primary">Rating (${
             exactMovie.Ratings[1]
-              ? exactMovie.Ratings[1].Source
-              : exactMovie.Ratings[0]?.Source
+              ? exactMovie?.Ratings[1]?.Source
+              : exactMovie?.Ratings[0]?.Source
           }):</span>
           <span class="secondary">${
             exactMovie.Ratings[1]?.Value
-              ? exactMovie.Ratings[1]?.Value
-              : exactMovie.Ratings[0]?.Value
+              ? exactMovie?.Ratings[1]?.Value
+              : exactMovie?.Ratings[0]?.Value
           }</span>
         </div>
       </div>
@@ -236,6 +236,7 @@ export function renderMovieList(movieList, targetElem) {
     for (const m in allMovies) {
       if (Object.hasOwnProperty.call(allMovies, m)) {
         const eachMovie = allMovies[m];
+        console.log(eachMovie);
         const favState = isMovieFavourite(eachMovie);
 
         const eachMoviePoster =
@@ -243,6 +244,7 @@ export function renderMovieList(movieList, targetElem) {
             ? `<img class="poster" src="${eachMovie.Poster}" alt="${eachMovie.Title}" />`
             : `<div class="noPoster">The poster was not found :(</div>`;
         // todo решить проблему с кавычками до и после JSON
+        // ? решение: иконка содержит только imdbId и при клике на иконку делается запрос по этому ID, а результат запроса пушится в favouriteMovies
         movieListHTML += `
         <div class="movie">
           <div class="favBtn-wrapper ${

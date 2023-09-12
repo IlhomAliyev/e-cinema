@@ -10,11 +10,12 @@
   position: fixed;
   inset: 0;
   z-index: -10;
-  background-image: url("https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg");
-  background-size: cover;
+  background: no-repeat url("./../img/background.jpg");
+  // background-size: cover;
+  background-size: 2200px;
 
-  -webkit-animation: slidein 80s;
-  animation: slidein 80s;
+  -webkit-animation: slidein 70s;
+  animation: slidein 70s;
 
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
@@ -24,6 +25,42 @@
 
   -webkit-animation-direction: alternate;
   animation-direction: alternate;
+}
+
+@media (min-width: 1920px) {
+  #background {
+    background-size: cover;
+  }
+}
+
+@keyframes backAnim {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@-webkit-keyframes slidein {
+  from {
+    background-position: top;
+  }
+  to {
+    background-position: -100px 0px;
+  }
+}
+
+@keyframes slidein {
+  from {
+    background-position: top;
+  }
+  to {
+    background-position: -100px 0px;
+  }
 }
 
 body {
@@ -76,38 +113,4 @@ button {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
-}
-
-@keyframes backAnim {
-  0% {
-    background-position: 0% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
-}
-
-@-webkit-keyframes slidein {
-  from {
-    background-position: top;
-    background-size: 3000px;
-  }
-  to {
-    background-position: -100px 0px;
-    background-size: 2750px;
-  }
-}
-
-@keyframes slidein {
-  from {
-    background-position: top;
-    background-size: 3000px;
-  }
-  to {
-    background-position: -100px 0px;
-    background-size: 2750px;
-  }
 }

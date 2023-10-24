@@ -75,19 +75,21 @@ header {
 .indicator {
   background-color: var(--prime-transparent);
   position: absolute;
-  top: 4px;
 
   width: 50%;
-  height: 83%;
+  height: 80%;
+  top: 10%;
   border-radius: 12px;
 
   transition: 200ms;
 
   &._main {
-    left: 5px;
+    // left: 5px;
+    translate: 5px 0;
   }
 
   &._fav {
-    left: 49.6%;
+    // left: 49.6%;
+    translate: calc(100% - 5px) 0;
   }
 }

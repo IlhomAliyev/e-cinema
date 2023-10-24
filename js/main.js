@@ -236,7 +236,7 @@ export function renderMovieList(movieList, targetElem) {
     for (const m in allMovies) {
       if (Object.hasOwnProperty.call(allMovies, m)) {
         const eachMovie = allMovies[m];
-        console.log(eachMovie);
+        // console.log(eachMovie);
         const favState = isMovieFavourite(eachMovie);
 
         const eachMoviePoster =
@@ -321,7 +321,7 @@ function toggleFavMovie(e) {
   localStorage.setItem("favMovies", JSON.stringify(favouriteMovies));
   activateToggle();
   renderFavMovies();
-  console.log("Favourite Movies: ", favouriteMovies);
+  // console.log("Favourite Movies: ", favouriteMovies);
 }
 
 export function renderFavMovies() {
